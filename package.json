@@ -1,8 +1,8 @@
 {
-  "name": "@dashevo/insight-api",
-  "description": "A Dash blockchain REST and WebSocket API Service",
-  "version": "3.1.2",
-  "repository": "git://github.com/dashevo/insight-api.git",
+  "name": "insight-api-alterdot",
+  "description": "Alterdot blockchain REST and WebSocket API Service",
+  "version": "1.0.0",
+  "repository": "git://github.com/Alterdot/insight-api-alterdot.git",
   "contributors": [
     {
       "name": "Gustavo Cortez",
@@ -38,19 +38,20 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/dashevo/insight-api/issues"
+    "url": "https://github.com/Alterdot/insight-api-alterdot/issues"
   },
-  "homepage": "https://github.com/dashevo/insight-api",
+  "homepage": "https://github.com/Alterdot/insight-api-alterdot",
   "license": "MIT",
   "keywords": [
     "insight",
     "insight api",
     "blockchain",
-    "dash api",
+    "alterdot api",
+    "adot api",
     "blockchain api",
     "json",
-    "bitcore-dash",
-    "dashcore"
+    "bitcore-adot",
+    "alterdot"
   ],
   "engines": {
     "node": ">=6"
@@ -60,7 +61,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@dashevo/dashcore-lib": "^0.19.25",
+    "alterdot-lib": "^1.0.0",
     "async": "^2.6.2",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

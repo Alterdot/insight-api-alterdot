@@ -1,12 +1,12 @@
 # Insight-API
 
-[![Build Status](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml)
-[![NPM version](https://img.shields.io/npm/v/@dashevo/insight-api.svg)](https://npmjs.org/package/@dashevo/insight-api)
+[![Build Status](https://github.com/Alterdot/insight-api-alterdot/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/Alterdot/insight-api-alterdot/actions/workflows/test_and_release.yml)
+[![NPM version](https://img.shields.io/npm/v/insight-api-alterdot.svg)](https://npmjs.org/package/insight-api-alterdot)
 [![API stability](https://img.shields.io/badge/stability-stable-green.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 
-A Dash blockchain REST and WebSocket API Service
+A Alterdot blockchain REST and WebSocket API Service
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/dashevo/insight-ui.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/Alterdot/insight-ui.
 
 ## Table of Content
 - [Install](#install)
@@ -41,7 +41,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
     - [Masternodes List](#masternodes-list)
     - [Historic Blockchain Data Sync Status](#historic-blockchain-data-sync-status)
     - [Live Network P2P Data Sync Status](#live-network-p2p-data-sync-status)
-    - [Status of the Dash Network](#status-of-the-dash-network)
+    - [Status of the Alterdot Network](#status-of-the-alterdot-network)
     - [Utility Methods](#utility-methods)
 - [Web Socket Api](#web-socket-api)
     - [Example Usage](#example-usage)
@@ -53,24 +53,24 @@ This is a backend-only service. If you're looking for the web frontend applicati
 ## Install
 
 ```bash
-npm install -g @dashevo/dashcore-node
-dashcore-node create mynode
+npm install -g alterdot-node
+alterdot-node create mynode
 cd mynode
-dashcore-node install @dashevo/insight-api
-dashcore-node start  # to also start the service
+alterdot-node install insight-api
+alterdot-node start  # to also start the service
 ```
 
 The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
 
 ### Prerequisites
 
-- [Dashcore Node Dash 4.x](https://github.com/dashevo/dashcore-node)
+- [Alterdot Node Alterdot 4.x](https://github.com/Alterdot/alterdot-node)
 
-**Note:** You can use an existing Dash data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` need to be enabled in `dash.conf`, as well as a few other additional fields.
+**Note:** You can use an existing Alterdot data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` need to be enabled in `alterdot.conf`, as well as a few other additional fields.
 
 ### Query Rate Limit
 
-To protect the server, insight-api has a built-in query rate limiter. It can be configurable in `dashcore-node.json` with:
+To protect the server, insight-api has a built-in query rate limiter. It can be configurable in `alterdot-node.json` with:
 
 ```json /*eslint-disable */
 
@@ -83,7 +83,7 @@ To protect the server, insight-api has a built-in query rate limiter. It can be 
 }
 ```
 
-With all the configuration options available: https://github.com/dashevo/insight-api/blob/master/lib/ratelimiter.js#L10-17
+With all the configuration options available: https://github.com/Alterdot/insight-api-alterdot/blob/master/lib/ratelimiter.js#L10-17
 
 Or disabled entirely with:
 
@@ -100,7 +100,7 @@ Or disabled entirely with:
 Follow the install instructions above, and ...
 
 ```bash
-dashcore-node start
+alterdot-node start
 ```
 
 This will start the Insight-API listening on default port 3001.
@@ -517,7 +517,7 @@ Sample output:
       payment_amount: 5,
       start_epoch: 1482105600,
       type: 1,
-      url: 'https://www.dash.org'
+      url: 'https://www.alterdot.org'
     },
     AbsoluteYesCount: 40,
     YesCount: 40,
@@ -572,7 +572,7 @@ Sample output:
           payment_amount: 5,
           start_epoch: 1482105600,
           type: 1,
-          url: 'https://www.dash.org'
+          url: 'https://www.alterdot.org'
         },
         CreationTime: 1482223714,
         FundingResult: {
@@ -727,7 +727,7 @@ Sample output:
   /insight-api/peer
 ```
 
-### Status of the Dash Network
+### Status of the Alterdot Network
 
 ```
   /insight-api/status?q=xxx
@@ -788,7 +788,7 @@ Sample output:
 }
 ```
 
-`<dashAddress>`: new transaction concerning <dashAddress> received from network. This event is published in the `<dashAddress>` room.
+`<alterdotAddress>`: new transaction concerning <alterdotAddress> received from network. This event is published in the `<alterdotAddress>` room.
 
 `status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
 
@@ -886,8 +886,8 @@ There are a few changes to the `GET` endpoint for `/addr/[:address]`:
 
 Some additional general notes:
 - The transaction history for an address will be sorted in block order
-- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in dashd.
-- The endpoint for `/peer` is no longer relevant connection to dashd is via ZMQ.
+- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in alterdotd.
+- The endpoint for `/peer` is no longer relevant connection to alterdotd is via ZMQ.
 - `/tx` endpoint results will now include block height, and spentTx related fields will be set to `null` if unspent.
 - `/block` endpoint results does not include `confirmations` and will include `poolInfo`.
 
@@ -906,7 +906,7 @@ The `/tx/<txid>` endpoint JSON response will not include the following fields on
 object.
 - `spentTs`
 
-The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking dashd.
+The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking alterdotd.
 
 Plug-in support for Insight API is also no longer available, as well as the endpoints:
 - `/email/retrieve`
@@ -916,11 +916,11 @@ Caching support has not yet been added in the v0.3 upgrade.
 
 ## Resources
 
-- (Medium)[How to setup a Dash Instant-Send Transaction using Insight API - The comprehensive way](https://medium.com/@obusco/setup-instant-send-transaction-the-comprehensive-way-a80a8a0572e)
+- (Medium)[How to setup a Alterdot Instant-Send Transaction using Insight API - The comprehensive way](https://medium.com/@obusco/setup-instant-send-transaction-the-comprehensive-way-a80a8a0572e)
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/dashevo/insight-api/issues/new) or submit PRs.
+Feel free to dive in! [Open an issue](https://github.com/Alterdot/insight-api/issues/new) or submit PRs.
 
 ## License
 
