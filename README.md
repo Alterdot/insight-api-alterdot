@@ -64,7 +64,7 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 ### Prerequisites
 
-- [Alterdot Node Alterdot 4.x](https://github.com/Alterdot/alterdot-node)
+- [Alterdot Node Alterdot 1.x](https://github.com/Alterdot/alterdot-node)
 
 **Note:** You can use an existing Alterdot data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` need to be enabled in `alterdot.conf`, as well as a few other additional fields.
 
